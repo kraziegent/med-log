@@ -24,21 +24,23 @@
                         </div>
                         <nav class="mt-5 px-2 space-y-1">
                             @foreach (config('navigation') as $navigation)
-                                <a href="{{ $navigation['route'] }}" class="{{ Request::is($navigation['active']) ? 'bg-blue-sec-active text-blue-400 ' : 'text-white ' }} group flex items-center px-2 py-2 text-base leading-6 font-medium rounded-md hover:bg-blue-sec-hover transition ease-in-out duration-150">
-                                    <span>
-                                        {!! $navigation['icon'] !!}
-                                    </span>
-                                    <span>
-                                        {{ $navigation['name'] }}
-                                    </span>
-                                    @if(isset($navigation['childs']) && count($navigation['childs']) > 0)
-                                        <button type="button" class="inline-flex justify-end w-full py-2 text-sm font-medium" id="menu-button" aria-expanded="true" aria-haspopup="true">
-                                            <svg class="-mr-1 ml-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                                            </svg>
-                                        </button>
-                                    @endif
-                                </a>
+                                @permission($navigation['permissions'])
+                                    <a href="{{ $navigation['route'] }}" class="{{ Request::is($navigation['active']) ? 'bg-blue-sec-active text-blue-400 ' : 'text-white ' }} group flex items-center px-2 py-2 text-base leading-6 font-medium rounded-md hover:bg-blue-sec-hover transition ease-in-out duration-150">
+                                        <span>
+                                            {!! $navigation['icon'] !!}
+                                        </span>
+                                        <span>
+                                            {{ $navigation['name'] }}
+                                        </span>
+                                        @if(isset($navigation['childs']) && count($navigation['childs']) > 0)
+                                            <button type="button" class="inline-flex justify-end w-full py-2 text-sm font-medium" id="menu-button" aria-expanded="true" aria-haspopup="true">
+                                                <svg class="-mr-1 ml-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                                </svg>
+                                            </button>
+                                        @endif
+                                    </a>
+                                @endpermission
                             @endforeach
                         </nav>
                     </div>
@@ -61,21 +63,23 @@
                     <!-- Sidebar component, swap this element with another sidebar if you like -->
                     <nav class="mt-5 space-y-1 flex-1 px-2 bg-blue-sec">
                         @foreach (config('navigation') as $navigation)
-                            <a href="{{ $navigation['route'] }}" class="{{ Request::is($navigation['active']) ? 'bg-blue-sec-active text-red-400 ' : 'text-white ' }} group flex items-center px-2 py-2 text-sm leading-5 font-medium rounded-md hover:bg-blue-sec-hover transition ease-in-out duration-150">
-                                <span>
-                                    {!! $navigation['icon'] !!}
-                                </span>
-                                <span>
-                                    {{ $navigation['name'] }}
-                                </span>
-                                @if(isset($navigation['childs']) && count($navigation['childs']) > 0)
-                                    <button type="button" class="inline-flex justify-end w-full py-2 text-sm font-medium" id="menu-button" aria-expanded="true" aria-haspopup="true">
-                                        <svg class="-mr-1 ml-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                                        </svg>
-                                    </button>
-                                @endif
-                            </a>
+                            @permission($navigation['permissions'])
+                                <a href="{{ $navigation['route'] }}" class="{{ Request::is($navigation['active']) ? 'bg-blue-sec-active text-red-400 ' : 'text-white ' }} group flex items-center px-2 py-2 text-sm leading-5 font-medium rounded-md hover:bg-blue-sec-hover transition ease-in-out duration-150">
+                                    <span>
+                                        {!! $navigation['icon'] !!}
+                                    </span>
+                                    <span>
+                                        {{ $navigation['name'] }}
+                                    </span>
+                                    @if(isset($navigation['childs']) && count($navigation['childs']) > 0)
+                                        <button type="button" class="inline-flex justify-end w-full py-2 text-sm font-medium" id="menu-button" aria-expanded="true" aria-haspopup="true">
+                                            <svg class="-mr-1 ml-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                            </svg>
+                                        </button>
+                                    @endif
+                                </a>
+                            @endpermission
                         @endforeach
                     </nav>
                 </div>
