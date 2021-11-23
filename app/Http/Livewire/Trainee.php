@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\Module;
+use App\Models\Role;
 use App\Models\User;
 use App\Models\Verification;
 use Illuminate\Database\Eloquent\Collection;
@@ -53,9 +54,12 @@ class Trainee extends Component
         // For each module attach all verifications on each task linked to skills in the module
 
         $password = random_int(100000, 999999);
+        $role = Role::whereName('trainee')->first();
+
         $trainee = new User(array_merge($this->state, ['password' => bcrypt($password)]));
 
         $trainee->save();
+        $trainee->attachRole($role);
 
         $verifications = Verification::all();
 
